@@ -13,11 +13,11 @@ class CalculationsController < ApplicationController
 
     @character_count_with_spaces = @text.length
 
-    @character_count_without_spaces = @text.gsub(" ","").length
+    @character_count_without_spaces = @text.gsub(" ","").gsub("\n","").length
 
     @word_count = @text.split.count
 
-    just_words = @text.gsub(/[^A-Za-z0-9\s]/i, ' ').split
+    just_words = @text.gsub(/[^A-Za-z0-9\s]/i, " ").split
 
     count = 0
 
