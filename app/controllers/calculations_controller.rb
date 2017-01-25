@@ -72,12 +72,12 @@ class CalculationsController < ApplicationController
     #   number of seconds as a result.
     # ================================================================================
 
-    @seconds = "Replace this string with your answer."
-    @minutes = "Replace this string with your answer."
-    @hours = "Replace this string with your answer."
-    @days = "Replace this string with your answer."
-    @weeks = "Replace this string with your answer."
-    @years = "Replace this string with your answer."
+    @seconds = @ending - @starting
+    @minutes = @seconds / 60
+    @hours = @minutes / 60
+    @days = @hours / 24
+    @weeks = @days / 7
+    @years = @weeks / 52
 
     # ================================================================================
     # Your code goes above.
@@ -94,25 +94,41 @@ class CalculationsController < ApplicationController
     # The numbers the user input are in the array @numbers.
     # ================================================================================
 
-    @sorted_numbers = "Replace this string with your answer."
+    @sorted_numbers = @numbers.sort
 
-    @count = "Replace this string with your answer."
+    @count = @numbers.count
 
-    @minimum = "Replace this string with your answer."
+    @minimum = @numbers.min
 
-    @maximum = "Replace this string with your answer."
+    @maximum = @numbers.max
 
-    @range = "Replace this string with your answer."
+    @range = @maximum - @minimum
 
-    @median = "Replace this string with your answer."
+    length = @numbers.count
 
-    @sum = "Replace this string with your answer."
+    @median = (@sorted_numbers[(length - 1) / 2] + @sorted_numbers[(length / 2)]) / 2.0
 
-    @mean = "Replace this string with your answer."
+    tally = 0
 
-    @variance = "Replace this string with your answer."
+    @numbers.each do |element|
+      tally += element
+    end
 
-    @standard_deviation = "Replace this string with your answer."
+    @sum = tally
+
+    @mean = tally / length
+
+    distances_sum = 0
+    numbers = @numbers
+    mean = @mean
+
+    numbers.each do |element|
+      distances_sum += (element - mean) ** 2
+    end
+
+    @variance = (1 / length) * distances_sum
+
+    @standard_deviation = @variance ** (1/2)
 
     @mode = "Replace this string with your answer."
 
