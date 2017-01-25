@@ -22,7 +22,7 @@ class CalculationsController < ApplicationController
     count = 0
 
     just_words.each do |possible_keyword|
-      if possible_keyword == @special_word
+      if possible_keyword.downcase == @special_word.downcase
         count += 1
       end
     end
