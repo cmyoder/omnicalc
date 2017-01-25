@@ -119,16 +119,14 @@ class CalculationsController < ApplicationController
     @mean = tally / length
 
     distances_sum = 0
-    numbers = @numbers
-    mean = @mean
 
-    numbers.each do |element|
-      distances_sum += (element - mean) ** 2
+    @numbers.each do |element|
+      distances_sum += (element - @mean) ** 2
     end
 
-    @variance = (1 / length) * distances_sum
+    @variance = (1.0 / length) * distances_sum
 
-    @standard_deviation = @variance ** (1/2)
+    @standard_deviation = @variance ** 0.5
 
     @mode = "Replace this string with your answer."
 
