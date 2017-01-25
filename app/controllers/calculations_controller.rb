@@ -128,7 +128,9 @@ class CalculationsController < ApplicationController
 
     @standard_deviation = @variance ** 0.5
 
-    @mode = "Replace this string with your answer."
+    counting_hash = @numbers.inject(Hash.new(0)) { |h,v| h[v] += 1; h }
+
+    @mode = @numbers.max_by { |v| counting_hash[v]}
 
     # ================================================================================
     # Your code goes above.
